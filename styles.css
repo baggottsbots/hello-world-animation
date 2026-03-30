@@ -1,0 +1,161 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --teal: #36D6B5;
+    --dark: #0a0a0f;
+    --mid: #111118;
+  }
+
+  body {
+    background: var(--dark);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    font-family: 'Space Mono', monospace;
+  }
+
+  .grid {
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(54,214,181,0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(54,214,181,0.07) 1px, transparent 1px);
+    background-size: 48px 48px;
+    animation: gridShift 8s linear infinite;
+  }
+
+  @keyframes gridShift {
+    from { transform: translate(0, 0); }
+    to   { transform: translate(48px, 48px); }
+  }
+
+  .orb {
+    position: fixed;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(54,214,181,0.18) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: pulse 3s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1);   opacity: 0.7; }
+    50%       { transform: translate(-50%, -50%) scale(1.3); opacity: 1;   }
+  }
+
+  .stage {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+  }
+
+  .ring {
+    width: 220px;
+    height: 220px;
+    margin: 0 auto 2rem;
+    position: relative;
+  }
+
+  .ring svg {
+    width: 100%;
+    height: 100%;
+    animation: spin 4s linear infinite;
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+
+  .ring-inner {
+    position: absolute;
+    inset: 20px;
+    border-radius: 50%;
+    border: 2px solid rgba(54,214,181,0.2);
+    animation: spin 6s linear infinite reverse;
+  }
+
+  .ring-dot {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: var(--teal);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 20px var(--teal), 0 0 40px var(--teal);
+    animation: breathe 2s ease-in-out infinite;
+  }
+
+  @keyframes breathe {
+    0%, 100% { box-shadow: 0 0 10px var(--teal), 0 0 20px var(--teal); transform: translate(-50%,-50%) scale(1); }
+    50%       { box-shadow: 0 0 30px var(--teal), 0 0 60px var(--teal); transform: translate(-50%,-50%) scale(1.4); }
+  }
+
+  .hello {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(4rem, 14vw, 9rem);
+    letter-spacing: 0.04em;
+    line-height: 0.85;
+    color: #fff;
+    position: relative;
+  }
+
+  .hello span {
+    display: inline-block;
+    animation: letterWave 2.4s ease-in-out infinite;
+  }
+
+  .hello span:nth-child(1) { animation-delay: 0s; }
+  .hello span:nth-child(2) { animation-delay: 0.1s; }
+  .hello span:nth-child(3) { animation-delay: 0.2s; }
+  .hello span:nth-child(4) { animation-delay: 0.3s; }
+  .hello span:nth-child(5) { animation-delay: 0.4s; }
+
+  @keyframes letterWave {
+    0%, 100% { transform: translateY(0);    color: #fff; }
+    40%       { transform: translateY(-12px); color: var(--teal); }
+    60%       { transform: translateY(-12px); color: var(--teal); }
+  }
+
+  .world {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(4rem, 14vw, 9rem);
+    letter-spacing: 0.04em;
+    line-height: 0.85;
+    color: var(--teal);
+    text-shadow: 0 0 40px rgba(54,214,181,0.5);
+    animation: glowPulse 3s ease-in-out infinite;
+  }
+
+  @keyframes glowPulse {
+    0%, 100% { text-shadow: 0 0 20px rgba(54,214,181,0.4); }
+    50%       { text-shadow: 0 0 60px rgba(54,214,181,0.9), 0 0 120px rgba(54,214,181,0.3); }
+  }
+
+  .sub {
+    margin-top: 1.5rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.35em;
+    color: rgba(54,214,181,0.5);
+    text-transform: uppercase;
+    animation: fadeSlide 1s ease forwards, subtleBlink 4s ease-in-out 1s infinite;
+    opacity: 0;
+  }
+
+  @keyframes fadeSlide {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes subtleBlink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.3; }
+  }
